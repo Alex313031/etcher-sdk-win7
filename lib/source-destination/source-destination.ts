@@ -472,7 +472,7 @@ export class SourceDestination extends EventEmitter {
 			throw error;
 		}
 		const ft = fileType(await streamToBuffer(stream));
-		if (ft !== null) {
+		if (ft !== undefined && ft !== null) {
 			return ft.mime;
 		}
 	}

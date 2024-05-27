@@ -45,6 +45,7 @@ export interface BalenaS3SourceOptions {
 	deviceType: string; // raspberry-pi
 	buildId: string; // 2.9.6+rev1.prod
 	release?: string; // 1344795
+	imageType?: string; // raw | flasher
 	awsCredentials?: AwsCredentials;
 }
 
@@ -55,6 +56,7 @@ export abstract class BalenaS3SourceBase extends SourceDestination {
 	public readonly deviceType: string;
 	public readonly buildId: string;
 	public readonly release?: string; // Only used for preloaded images
+	public readonly imageType?: string;
 	protected axiosInstance: AxiosInstance;
 	private static filesMissingFromPreloadedImages = [
 		'VERSION',
@@ -69,6 +71,7 @@ export abstract class BalenaS3SourceBase extends SourceDestination {
 		deviceType,
 		buildId,
 		release,
+		imageType,
 		awsCredentials,
 	}: BalenaS3SourceOptions) {
 		super();
@@ -86,6 +89,7 @@ export abstract class BalenaS3SourceBase extends SourceDestination {
 		this.deviceType = deviceType;
 		this.buildId = buildId;
 		this.release = release;
+		this.imageType = imageType;
 		this.axiosInstance = axios.create();
 		if (awsCredentials !== undefined) {
 			this.axiosInstance.interceptors.request.use(
@@ -94,12 +98,16 @@ export abstract class BalenaS3SourceBase extends SourceDestination {
 		}
 	}
 
+	protected get imageSuffix(): string {
+		return this.imageType ? `-${this.imageType}`: ''
+	}
+
 	public async canCreateReadStream(): Promise<boolean> {
 		return true;
 	}
 
 	public static isESRVersion(buildId: string) {
-		return /^\d{4}\.\d{2}\.\d+\.(dev|prod)$/.test(buildId);
+		return /^\d{4}\.\d{1,2}\.\d+([.+](dev|prod))?$/.test(buildId);
 	}
 
 	private isESR() {
@@ -152,7 +160,7 @@ export class BalenaS3Source extends BalenaS3SourceBase {
 			try {
 				await this.axiosInstance({
 					method: 'head',
-					url: this.getUrl(`image/${name}.img`),
+					url: this.getUrl(`image/${name}${this.imageSuffix}.img`),
 				});
 				return name;
 			} catch (error) {

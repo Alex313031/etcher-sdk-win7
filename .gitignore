@@ -1,5 +1,3 @@
-.DS_Store
-.eslintcache
-Thumbs.db
+build
 *~
 node_modules

@@ -1,8 +1,8 @@
 {
   "name": "etcher-sdk",
   "version": "8.7.3",
-  "description": "Etcher SDK",
-  "author": "Balena Ltd <hello@balena.io>",
+  "description": "Etcher-ng SDK",
+  "author": "Alex313031 <alex313031@gmail.com>",
   "main": "build/index.js",
   "license": "Apache-2.0",
   "types": "build/index.d.ts",
@@ -24,6 +24,7 @@
   ],
   "keywords": [
     "etcher",
+    "etcher-ng",
     "sdk",
     "flash",
     "flashing",
@@ -37,13 +38,13 @@
     "balena",
     "balenaos"
   ],
-  "homepage": "https://github.com/balena-io-modules/etcher-sdk",
+  "homepage": "https://github.com/Alex313031/etcher-sdk-win7#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/balena-io-modules/etcher-sdk.git"
+    "url": "https://github.com/Alex313031/etcher-sdk-win7.git"
   },
   "bugs": {
-    "url": "https://github.com/balena-io-modules/etcher-sdk/issues"
+    "url": "https://github.com/Alex313031/etcher-sdk-win7/issues"
   },
   "dependencies": {
     "@balena/node-beaglebone-usbboot": "3.0.4",
@@ -70,6 +71,7 @@
     "unbzip2-stream": "git+https://github.com/balena-io-modules/unbzip2-stream.git#4a54f56a25b58950f9e4277c56db2912d62242e7",
     "unzip-stream": "0.3.4",
     "xxhash-addon": "1.5.0",
+    "usb": "git+https://github.com/Alex313031/node-usb.git",
     "yauzl": "2.10.0",
     "zip-part-stream": "2.0.0"
   },
@@ -77,7 +79,8 @@
     "winusb-driver-generator": "2.1.2"
   },
   "devDependencies": {
-    "@balena/lint": "6.2.2",
+    "@aws-sdk/client-sso-oidc": "3.583.0",
+    "@balena/lint": "5.4.2",
     "@types/bluebird": "3.5.42",
     "@types/chai": "4.3.16",
     "@types/cli-spinner": "0.2.3",
@@ -85,7 +88,7 @@
     "@types/debug": "4.1.12",
     "@types/file-type": "10.9.1",
     "@types/lodash": "4.14.202",
-    "@types/mocha": "9.1.1",
+    "@types/mocha": "10.0.6",
     "@types/node": "16.18.78",
     "@types/progress": "2.0.7",
     "@types/sinon": "9.0.11",
@@ -102,19 +105,18 @@
     "typedoc": "0.24.8",
     "typedoc-plugin-markdown": "2.4.2",
     "typescript": "4.6.4",
-    "usb": "2.4.3",
     "yargs": "16.2.0"
   },
   "resolutions": {
     "@ronomon/direct-io": "git+https://github.com/Alex313031/direct-io.git",
-    "usb": "2.4.3"
+    "usb": "git+https://github.com/Alex313031/node-usb.git"
   },
   "overrides": {
     "@ronomon/direct-io": "git+https://github.com/Alex313031/direct-io.git",
-    "usb": "2.4.3"
+    "usb": "git+https://github.com/Alex313031/node-usb.git"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=14 <=18"
   },
   "versionist": {
     "publishedAt": "2023-10-07T14:29:20.088Z"

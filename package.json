@@ -14,9 +14,9 @@
     "build": "tsc",
     "doc": "typedoc --readme none --theme markdown --mode file --out doc lib && npm run sed",
     "sed": "sed -i'.bak' 's|'$(pwd)'||g' $(find doc -type f) && rimraf doc/*.bak doc/**/*.bak",
-    "prepublish": "npm run build",
-    "clean": "rimraf node_modules",
-    "burn": "rimraf package-lock.json && rimraf node_modules"
+    "prepare": "npm run build",
+    "clean": "rimraf ./build && rimraf ./node_modules",
+    "burn": "rimraf package-lock.json && npm run clean"
   },
   "files": [
     "build",
